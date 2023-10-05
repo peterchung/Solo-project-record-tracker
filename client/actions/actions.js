@@ -1,6 +1,12 @@
 import * as types from "../constants/actionTypes";
 
-export const searchSummonerAction = (summonerName) => ({
+export const searchSummonerAction = (summonerName, summonerInfo) => ({
   type: types.SEARCH_SUMMONER,
-  payload: summonerName,
+  payload1: summonerName,
+  payload2: summonerInfo,
 });
+
+// export const storeInfoAction = (summonerInfo) => ({
+//   type: types.STORE_INFO,
+//   payload: summonerInfo,
+// });

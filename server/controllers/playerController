@@ -1,26 +1,19 @@
 const fetch = require("node-fetch");
 
-const API_Key = "RGAPI-2d293402-bd81-459f-ba49-32a88477ad85";
-
 const playerController = {
   getPlayer: async (req, res, next) => {
     try {
-      // profile name provided by user from frontend
       const profileName = req.body.name;
-      console.log("from frontend req:", profileName);
+      const API_Key = "RGAPI-cafdb49c-0815-4df9-9bd5-3e4ffc24c5ba";
+      const URL =
+        "https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/";
 
       // API fetch url with profile name
-      let APICallString =
-        "https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/" +
-        profileName +
-        "?api_key=" +
-        API_Key;
+      let APICallString = URL + profileName + "?api_key=" + API_Key;
 
       let response = await fetch(APICallString);
       let playerData = await response.json();
-      console.log(playerData);
-      res.local.profile = playerData;
-
+      res.locals.profile = playerData;
       return next();
     } catch (err) {
       return next({
