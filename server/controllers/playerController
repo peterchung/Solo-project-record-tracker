@@ -1,19 +1,21 @@
 const fetch = require("node-fetch");
 
+const API_Key = "RGAPI-030dbadb-5a99-4286-bf89-8cfd8c19cb4a";
+
 const playerController = {
   getPlayer: async (req, res, next) => {
     try {
       const profileName = req.body.name;
-      const API_Key = "RGAPI-cafdb49c-0815-4df9-9bd5-3e4ffc24c5ba";
-      const URL =
-        "https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/";
+      const URL = "https://na1.api.riotgames.com/lol/summoner/v4/summoners/by-name/";
 
       // API fetch url with profile name
       let APICallString = URL + profileName + "?api_key=" + API_Key;
 
       let response = await fetch(APICallString);
-      let playerData = await response.json();
-      res.locals.profile = playerData;
+      let fetchData = await response.json();
+      res.locals.profile = fetchData;
+      res.locals.summonerID = fetchData.id;
+
       return next();
     } catch (err) {
       return next({
@@ -23,6 +25,26 @@ const playerController = {
       });
     }
   },
+  getPlayerRank: async (req, res, next) => {
+    try {
+      const URL = "https://na1.api.riotgames.com/lol/league/v4/entries/by-summoner/";
+
+      let APICallString = URL + res.locals.summonerID + "?api_key=" + API_Key;
+
+      let response = await fetch(APICallString);
+      let fetchData = await response.json();
+      res.locals.summonerRank = fetchData;
+      
+      return next();
+
+    } catch (err) {
+      return next({
+        log: "Express error handler caught error in playerController.getPlayerRank",
+        status: 400,
+        message: { err: "An error occurred" },
+      });
+    }
+  }
 };
 
 module.exports = playerController;

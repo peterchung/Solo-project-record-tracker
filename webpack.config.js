@@ -48,6 +48,17 @@ module.exports = {
           { loader: "css-loader" }, // bundles all CSS files referenced puts into a string
         ],
       },
+
+      {
+        test: /\.(jpe?g|png|gif|svg)$/i, 
+        use: {
+            loader: 'file-loader',
+            // options: {
+            //     name: './client/images/BRONZE.png'
+            // }
+        }
+      },
+
     ],
   },
   plugins: [

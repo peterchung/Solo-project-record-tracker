@@ -1,0 +1,50 @@
+
+
+#body {
+    display: grid;
+    justify-content: center;
+    
+
+}
+
+header {
+    display: grid;
+    justify-content: center;
+}
+
+.infopics {
+    display: grid;
+    justify-content: center;
+}
+
+#basicinfo {
+    display: flex;
+}
+
+#stats {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    justify-items: center;
+}
+
+#basicinfo {
+    font-weight: bold;
+}
+
+.name {
+    font-weight: bold;
+    color: red;
+}
+
+.level {
+    font-weight: bold;
+    color: red;
+}
+
+.statsheet {
+    font-weight: bold;
+    color: red;
+}
+

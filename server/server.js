@@ -18,6 +18,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // serve static assets i.e. images
+app.use('/images', express.static(__dirname + '../clients/images'));
 
 // define route handlers
 
