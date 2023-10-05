@@ -1,0 +1,1 @@
+export const SEARCH_SUMMONER = "SEARCH_SUMMONER";
